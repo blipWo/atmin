@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include ('header.php');?>
+<?php 
+session_start();
+include ('header.php');?>
 <?php include ('../conf/config.php');?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -29,7 +31,22 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <?php include ('data_mahasiswa.php');?>
+    <?php 
+    if (isset($_GET['page'])){
+    if ($_GET['page']=='dashboard'){
+      include ('dashboard.php');
+    }
+    else if ($_GET['page']=='data-mahasiswa'){
+      include ('data-mahasiswa.php');
+    }
+    else{
+      include ('not_found.php');
+    }
+    }
+    else{
+      include ('dashboard.php');
+    }
+    ?>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
