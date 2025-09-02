@@ -23,7 +23,7 @@
 
       <!-- Sidebar Menu -->
       <?php 
-      if($_SESSION['level']=='superadmin'){
+      if($_SESSION['level']=='superadmin.php'){
       include ('menu/superadmin.php');
       }
       else {
