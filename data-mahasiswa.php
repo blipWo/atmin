@@ -40,6 +40,10 @@
                     <td>
                       <a onclick="hapus_data(<?php echo $mhs['id'];?>)" class="btn btn-sm btn-danger">Hapus</a>
                       <a href="index.php?page=edit_data&& id=<?php echo $mhs['id'];?>" class="btn btn-sm btn-success">Edit</a>
+                      <a class="view-data btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-view" 
+                      data-nama="<?php echo $mhs['nama'];?>"
+                      data-nim="<?php echo $mhs['nim'];?>"
+                      data-semester="<?php echo $mhs['semester'];?>">View Data</a>
                     </td>
                   </tr>
                   <?php }?>
@@ -70,7 +74,7 @@
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h4 class="modal-title">Small Modal</h4>
+                  <h4 class="modal-title">Tambah Data</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -107,6 +111,30 @@
             </div>
             <!-- /.modal-dialog -->
           </div>
+          <!-- modal view data -->
+           <!-- modal view data -->
+<div class="modal fade" id="modal-view">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form method="get" action="add/tambah_data.php">
+        <div class="modal-header">
+          <h4 class="modal-title">View Data </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="hasil-view-data">
+          <!-- isi ajax masuk sini -->
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
   <script>
     function hapus_data(data_id){
       // alert('ok');
