@@ -38,6 +38,12 @@
                   <p>Data Dosen</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="index.php?page=data-pembayaran" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Pembayaran</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">

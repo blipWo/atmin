@@ -84,9 +84,29 @@
       success: function(data){
         $('#hasil-view-data').html(data);
       }
-    })
+    });
     console.log(nim);
-  })
+  });
+    $('.view-pembayaran').click(function(){
+    // var nama = $(this).attr('data-nama');
+    var nim = $(this).attr('data-nim');
+    // var semester = $(this).attr('data-semester');
+    $.ajax({
+      url:"view/view-data-pembayaran.php",
+      dataType:"html",
+      method: "POST",
+      data:{nim:nim},
+      success: function(data){
+        $('#hasil-view-pembayaran').html(data);
+      }
+    });
+    console.log(nim);
+  });
+  $(document).ready(function(){
+    setInterval(function(){
+      $('#report-mhs').load("banner.php");
+    });
+  });
 </script>
 <script>
 $(function () {

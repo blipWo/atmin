@@ -42,6 +42,9 @@ include ('header.php');?>
     else if ($_GET['page']=='data-mahasiswa'){
       include ('data-mahasiswa.php');
     }
+    else if ($_GET['page']=='data-pembayaran'){
+      include ('data-pembayaran.php');
+    }
     else if ($_GET['page']=='edit_data'){
       include ('edit/edit_data.php');
     }
