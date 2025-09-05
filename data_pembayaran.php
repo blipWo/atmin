@@ -11,9 +11,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-lg">
-                  Tambah Data
-                </button>
+                
                 <br>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
@@ -38,7 +36,7 @@
                     <td><?php echo $mhs['nim'];?></td>
                     <td><?php echo $mhs['semester'];?></td>
                     <td>
-                      <a class="view-pembayaran btn btn-sm btn-warning" data-nim="<?php echo $mhs['nim'];?>">View Pembayaran</a>
+                      <a class="view-pembayaran btn btn-sm btn-warning" data-nama="<?php echo $mhs['nama'];?>" data-nim="<?php echo $mhs['nim'];?>">View Pembayaran</a>
                     </td>
                   </tr>
                   <?php }?>
@@ -58,9 +56,8 @@
             </div>
             <!-- View Data Pembayaran -->
              <div id="hasil-view-pembayaran">
-
+              
              </div>
-                      <?php include('view/view-data-pembayaran.php');?>
             <!-- End Data Pembayaran -->
             <!-- /.card -->
           </div>
@@ -70,49 +67,10 @@
       </div>
       <!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
-      <div class="modal fade" id="modal-lg">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title">Tambah Data</h4>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <form method="get" action="add/tambah_data.php">
-                <div class="modal-body">
-                  
-      <div class="form-row">
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Nama" name="nama" required>
-        </div>
-        <div class="col">
-          <input type="text" class="form-control" placeholder="NIM" name="nim" required>
-        </div>
-        <div class="col">
-          <select class="custom-select" id="inputGroupSelect01" name="semester" >
-    <option selected>Pilih...</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-  </select>
-        </div>
-      </div>
-    
-                </div>
-                <div class="modal-footer justify-content-between">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-              </form>
-              <!-- /.modal-content -->
-            </div>
+
             <!-- /.modal-dialog -->
           </div>
-          <!-- modal view data -->
+          <!-- End Modal Input Pembayaran -->
            <!-- modal view data -->
 <div class="modal fade" id="modal-view">
   <div class="modal-dialog modal-lg">
@@ -155,3 +113,4 @@
 });
     }
   </script>
+  

@@ -1,7 +1,7 @@
 <?php include('../../conf/config.php'); ?>
 <div class="card">
               <div class="card-header">
-<h3 class="card-title">Data Pembayaran : <?php echo $nim;?></h3>
+<h3 class="card-title">Data Pembayaran : <?php echo $_POST['nim'];?></h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -23,7 +23,8 @@
                   <tbody>
                     <?php
                     $no = 0;
-                    $nim = isset($_POST['nim']) ? $_POST['nim'] : '';
+                    $total = 0;
+                    $nim = $_POST['nim'];
                     $query = mysqli_query($koneksi,"SELECT * FROM tb_pembayaran WHERE nim = '$nim'");
                     while($mhs = mysqli_fetch_array($query)){
                     $no++
@@ -32,30 +33,89 @@
                     <td width='5%'><?php echo $no;?></td>
                     <td><?php echo $mhs['nama'];?></td>
                     <td><?php echo $mhs['nim'];?></td>
-                    <td><?php echo $mhs['pembayaran'];?></td>
+                    <td class="text-right"><?php echo number_format($mhs['pembayaran']).',-';?></td>
                     <td><?php echo $mhs['keterangan'];?></td>
-                    <td><?php echo $mhs['tanggal-bayar'];?></td>
-                    <td>
-                      <a onclick="hapus_data(<?php echo $mhs['id'];?>)" class="btn btn-sm btn-danger">Hapus</a>
-                      <a href="index.php?page=edit_data&& id=<?php echo $mhs['id'];?>" class="btn btn-sm btn-success">Edit</a>
-                      <a class="view-data btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-view" 
-                      data-nama="<?php echo $mhs['nama'];?>"
-                      data-nim="<?php echo $mhs['nim'];?>"
-                      data-semester="<?php echo $mhs['semester'];?>">View Data</a>
-                    </td>
+                    <td><?php echo $mhs['tanggal_bayar'];?></td>
+                    
                   </tr>
-                  <?php }?>
+                  <?php 
+                $total += $mhs['pembayaran'];
+                }?>
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
+                    <th colspan=3>Jumlah</th>
+                    <th class="text-right"><?php echo 'Rp. '.number_format($total).',-';?></th>
+                    <th colspan=2>CSS grade</th>
                   </tr>
                   </tfoot>
                 </table>
               </div>
               <!-- /.card-body -->
+            </div>
+            <!-- Modal Input Pembayaran -->
+      <div class="modal fade" id="modal-lg">
+            <div class="modal-dialog modal-lg">
+              <!-- Horizontal Form -->
+            <div class="modal-content card card-info">
+              <div class="card-header">
+                <h3 class="card-title">Input Data Pembayaran</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+                <div class="card-body">
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Nama</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputEmail3" value="<?php echo $_POST['nama'];?>" readonly>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">NIM</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputPassword3" value="<?php echo $_POST['nim'];?>" readonly>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">UAS</label>
+                    <div class="col-sm-10">
+                      <input type="number" class="form-control" id="uas" value='0' oninput="bayar()">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Semester</label>
+                    <div class="col-sm-10">
+                      <input type="number" class="form-control" id="smt" value='0' oninput="bayar()">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Jumlah</label>
+                    <div class="col-sm-10">
+                      <input type="number" class="form-control" id="hsl" readonly>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-info" onclick="bayar()">Bayar</button>
+                  <button type="submit" class="btn btn-default float-right">Batalkan</button>
+                </div>
+                <!-- /.card-footer  -->
+            <script>
+              function bayar(){
+                uas = document.getElementById('uas').value;
+                smt = document.getElementById('smt').value;
+                hsl = document.getElementById('hsl');
+                jml = parseInt(uas)+parseInt(smt);
+                if(!isNaN(jml)){
+                  hsl.value = jml;
+                }
+                else{
+                  hsl.value = 0;
+                }
+                // alert(jml);
+              }
+            </script>
+              </div>
+            <!-- /.card -->
             </div>

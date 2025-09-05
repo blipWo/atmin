@@ -43,7 +43,7 @@ include ('header.php');?>
       include ('data-mahasiswa.php');
     }
     else if ($_GET['page']=='data-pembayaran'){
-      include ('data-pembayaran.php');
+      include ('data_pembayaran.php');
     }
     else if ($_GET['page']=='edit_data'){
       include ('edit/edit_data.php');
